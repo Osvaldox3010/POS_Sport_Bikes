@@ -1,0 +1,51 @@
+# ==========================================================
+# BikePOS — .gitignore (monorepo)
+# ==========================================================
+
+# ---------- Variables de entorno ----------
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ---------- Frontend (React + TypeScript + Vite) ----------
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/*.local
+frontend/coverage/
+frontend/.eslintcache
+
+# ---------- Backend (Java + Spring Boot + Maven) ----------
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/*.jar
+backend/*.war
+backend/*.class
+backend/HELP.md
+
+# ---------- Base de datos local / Docker ----------
+docker-compose.override.yml
+*.pgdata/
+postgres-data/
+
+# ---------- IDEs y editores ----------
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# ---------- Logs ----------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------- Otros ----------
+*.tmp
+*.bak
+.cache/
