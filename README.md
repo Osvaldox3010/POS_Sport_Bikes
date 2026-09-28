@@ -8,11 +8,11 @@ Sistema web de punto de venta (POS) para una tienda de bicicletas: una sola caja
 
 ## Estado del proyecto
 
-🚧 **En construcción — Fase 0: Fundación.**
+🚧 **En construcción — Fase 2: Esqueleto, base offline y prueba de impresión.**
 
 - [x] Fase 0 — Fundación (repo, `.gitignore`, `.env.example`, README, `docs/decisions.md`)
-- [ ] Fase 1 — Planeación y diseño offline
-- [ ] Fase 2 — Esqueleto, base offline y prueba de impresión
+- [x] Fase 1 — Planeación y diseño offline (casos de uso, reglas de negocio, diagrama ER, borrador de API, wireframes, diseño offline — todo aprobado)
+- [ ] Fase 2 — Esqueleto, base offline y prueba de impresión *(pendiente tu visita a la tienda: H1–H3)*
 - [ ] Fase 3 — Autenticación, usuarios y auditoría (base) — primer despliegue público
 - [ ] Fase 4 — Categorías, marcas y productos
 - [ ] Fase 5 — Búsqueda e inventario
@@ -87,11 +87,17 @@ Las decisiones de arquitectura (monorepo, monolito modular, local-first, idempot
 ## Estructura del monorepo
 
 ```text
-POSBikeStoreSportBikes/
+bikepos/
 ├── frontend/          # React + TypeScript + Vite (PWA, POS, dashboard)
 ├── backend/           # Spring Boot — monolito modular
 ├── docs/              # Documentación técnica y decisiones
-│   └── decisions.md
+│   ├── decisions.md
+│   ├── casos-de-uso.md
+│   ├── reglas-corte-apartados-devoluciones.md
+│   ├── diagrama-er.md
+│   ├── api-draft.md
+│   ├── wireframes.md
+│   └── diseno-offline.md
 ├── docker-compose.yml # (Fase 2) frontend + backend + PostgreSQL local
 ├── .env.example
 ├── .gitignore
@@ -107,7 +113,7 @@ POSBikeStoreSportBikes/
 ```bash
 # Clonar el repositorio
 git clone <url-del-repositorio>
-cd POSBikeStoreSportBikes
+cd bikepos
 
 # Copiar variables de entorno
 cp .env.example .env
@@ -126,11 +132,11 @@ Ver [`.env.example`](./.env.example) para la lista completa (base de datos, JWT,
 
 ## API
 
-La documentación de la API (Swagger/OpenAPI) se agregará a partir de la Fase 3, cuando exista el primer despliegue público.
+Borrador completo de endpoints por módulo en [`docs/api-draft.md`](./docs/api-draft.md). La documentación formal (Swagger/OpenAPI) se agregará a partir de la Fase 3, cuando exista el primer despliegue público.
 
 ## Base de datos
 
-El modelo de datos y las migraciones se documentarán en `docs/database.md` a partir de la Fase 4.
+Modelo entidad-relación preliminar, aprobado en la Fase 1, en [`docs/diagrama-er.md`](./docs/diagrama-er.md). Las migraciones (Flyway) se documentarán en `docs/database.md` a partir de la Fase 4.
 
 ## Testing
 
@@ -175,8 +181,14 @@ Prefijos usados: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `perf`, `st
 
 ## Documentación adicional
 
-- [`docs/decisions.md`](./docs/decisions.md) — decisiones de arquitectura registradas.
-- Próximamente: `docs/architecture.md`, `docs/database.md`, `docs/api.md`, `docs/security.md`.
+- [`docs/decisions.md`](./docs/decisions.md) — decisiones de arquitectura (Fase 0): monorepo, monolito modular, local-first, idempotencia por operación.
+- [`docs/casos-de-uso.md`](./docs/casos-de-uso.md) — 38 casos de uso, con flujo detallado de los de mayor riesgo.
+- [`docs/reglas-corte-apartados-devoluciones.md`](./docs/reglas-corte-apartados-devoluciones.md) — reglas finales de corte de caja, apartados y devoluciones/cancelaciones/reembolsos.
+- [`docs/diagrama-er.md`](./docs/diagrama-er.md) — modelo entidad-relación (Mermaid).
+- [`docs/api-draft.md`](./docs/api-draft.md) — borrador de la API REST por módulo.
+- [`docs/wireframes.md`](./docs/wireframes.md) — wireframes de baja fidelidad de las pantallas clave.
+- [`docs/diseno-offline.md`](./docs/diseno-offline.md) — diseño del modo sin conexión (copia local, cola de sincronización, folio local).
+- Próximamente: `docs/architecture.md`, `docs/database.md`, `docs/security.md`.
 
 ---
 
